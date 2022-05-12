@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Theme System Overview</title>
+
+    <link href="https://cdn.media.disneyatoz.com/fonts/InspireTWDC_fonts.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/prism.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="dist/layout.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <div style="max-width: 300px; margin: 0 auto"><img src="/assets/prism-global-nav-large.svg" /></div>
+          <h1>Theme System Overview</h1>
+          <p style="font-size: 28px; color: #3772df">Draft | May 12, 2022</p>
+        </section>
+        <section>
+          <h2>A Definition (sorta)</h2>
+          <p>
+            A series of independent
+            <span class="fragment highlight-current-blue" data-fragment-index="3">services, packages, and UIs</span>
+            that enable a
+            <span class="fragment highlight-current-blue" data-fragment-index="1"
+              >framework-agnostic, end-to-end workflow</span
+            >
+            for
+            <span class="fragment highlight-current-blue" data-fragment-index="2"
+              >creating, maintaining, and managing visual themes and components</span
+            >.
+          </p>
+        </section>
+        <section>
+          <h2>A Visual</h2>
+          <img src="/assets/layerDiagram-2.svg" />
+        </section>
+        <section>
+          <h2>All the Things</h2>
+          <table style="font-size: 28px">
+            <tr>
+              <td>Packages</td>
+              <td>UIs</td>
+              <td>Plugins</td>
+            </tr>
+            <tr>
+              <td>
+                @prism-labs/themes <br />@prism-labs/utils <br />@prism-labs/theme-provider <br />@prism-labs/components
+              </td>
+              <td>/theme-builder <br />/exports <br />/components <br />/dictionary</td>
+              <td>Figma</td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <h2>Another Visual</h2>
+          <img src="/assets/p2pArchitecture.svg" />
+        </section>
+        <section>
+          <h2>Sample Use Cases</h2>
+          <div style="position: relative">
+            <div style="position: absolute; top: 0; right: 0; left: 0; bottom: 0" class="fragment fade-up">
+              <div class="fragment fade-out">
+                <p>A React App</p>
+                <pre><code data-trim data-noescape>
+							// _app.tsx
+							import { strata } from '@prism-labs/themes'
+							import {CSSInjector} from '@prism-labs/utils'
+						</code></pre>
+                <pre><code data-trim data-noescape>
+						// sample-component.tsx
+						import { Button } from '@prism-labs/components'
+					</code></pre>
+              </div>
+            </div>
+            <div style="position: absolute; top: 0; right: 0; left: 0; bottom: 0" class="fragment fade-up">
+              <div class="fragment fade-out">
+                <p>A React App with Theme Provider</p>
+                <pre><code data-trim data-noescape>
+							// _app.tsx
+							import { strata } from '@prism-labs/themes'
+							import {ThemeProvider} from '@prism-labs/theme-provider'
+						</code></pre>
+                <pre><code data-trim data-noescape>
+							// custom-component.tsx
+							import { useTheme } from '@prism-labs/theme-provider'
+							const _theme = useTheme();
+							console.log(_theme.palette.primary.main);
+						</code></pre>
+              </div>
+            </div>
+            <div style="position: absolute; top: 0; right: 0; left: 0; bottom: 0" class="fragment fade-up">
+              <div class="fragment fade-out">
+                <p>Non-React App</p>
+                <pre><code data-trim data-noescape>
+							// some_root_file.js
+							import { strata } from '@prism-labs/themes'
+						</code></pre>
+                <pre><code data-trim data-noescape>
+							// cool-component.css
+						 .cool-class {
+							 background-color: var(--palette-primary-main);
+						 }
+						</code></pre>
+              </div>
+            </div>
+            <div style="position: absolute; top: 0; right: 0; left: 0; bottom: 0" class="fragment fade-up">
+              <div>
+                <p>Static Web</p>
+                <pre><code data-trim >
+								// index.html
+								<link href="/strata.css"/>
+								<link href="/prism-table.css" />
+
+						...
+									<table class="table table--standard"></table>
+						
+						</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Next Steps</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
